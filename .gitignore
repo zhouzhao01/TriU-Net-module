@@ -1,4 +1,7 @@
 wavs/
+drone_data/
+2023测试数据/
+
 
 __pycache__/sConformer.cpython-310.pyc
 __pycache__/TriU_Net.cpython-310.pyc

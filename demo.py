@@ -13,7 +13,10 @@ from TriU_Net import TriU_Net
 if __name__ == "__main__":
     DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-    noisy, fs = sf.read('wavs/9ULA_synth_kkl_babble_snr-5.wav')
+    # noisy, fs = sf.read('wavs/9ULA_synth_kkl_babble_snr-5.wav')
+    input_multichannel_wavfile = "drone_data/20230706-115818-uav/combined_123456789.wav"
+
+    noisy, fs = sf.read(input_multichannel_wavfile)
     noisy = torch.FloatTensor(noisy).T.unsqueeze(0).to(DEVICE) ## [1, ch, samples]
     print("noisy shape: ", noisy.shape)
 
@@ -31,7 +34,7 @@ if __name__ == "__main__":
         print(f"enhanced wav shape: {enh_wav.shape}")
 
         enh_wav = enh_wav.squeeze(0).cpu().numpy() 
-        sf.write('wavs/enhanced.wav', enh_wav, 16000)
+        sf.write('drone_data/20230706-115818-uav//combined_enhanced.wav', enh_wav, 16000)
 
 
 
